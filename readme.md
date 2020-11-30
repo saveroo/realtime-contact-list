@@ -14,6 +14,7 @@ User will be presented with [Create New Contact] button and when User click the 
 - [x] 5 Fields
 
 ### What's not covered
+..... 
 
     
 #### Directory/Files structure and explanation
@@ -168,7 +169,6 @@ Flow:
 - Data transforming
 - Use of .onUpdate but rewritten with .onWrite to handle broader cases.
 - Rules aren't applied yet.
-
 
 ### Known Bugs
 - [x] JSX Component won't read reactivity from the server. Error Message cases.
