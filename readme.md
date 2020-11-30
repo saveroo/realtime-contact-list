@@ -201,8 +201,8 @@ Flow:
 
 ##### DB Save
 
-[logo]: docs/firestore-metrics.PNG "Firestore Metrics"
-[logo]: docs/function-logs.PNG "Google Cloud Functions Invocation"
+![firestore](./docs/firestore-metrics.PNG)|Firestore Metrics
+![function](./docs/function-logs.PNG)|Functions Logs
 
 ---
 
