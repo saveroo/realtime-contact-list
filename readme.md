@@ -46,16 +46,10 @@ User will be presented with [Create New Contact] button and when User click the 
 - /functions
     - ./src
         - **index.ts** (.onWrite background function to handle both adding and updating.)
-      
-#### Initialization
-- `mkdir [projectFolder]`
-- `firebase init`
-    - TypeScript
-    - 
-- `vue create [front]`
 
 #### Front
-Form consist of `5 Field` and `2 Button`,
+Form consist of `5 Field` and `2 Button`, and `1 button` to create.
+`2` more button to `Edit` and `Delete`.
 
 Features:
 - Debounced Autosave
@@ -69,19 +63,33 @@ Form Field:
 - Message
 
 Form Button:
-- Save (Dynamic)
-- Cancel (Change application state to Idle
-
-Description:
-
+- Save 
+- Cancel 
 
 Flow:
 - Use `onSnapshot` Listener.
 - Create Contact
+    - Will set [appState] to [creating]
     - Will send [Blank Data] to server
     - Receive the data with firebase [DocumentId]
     - Pushed to reactive local state
+    - Will set [appState] to [editing] ASAP.
 - Save Button
+    - Will set to [idle] state
+    - Will clearing the data for next action
+    - Disabled if form aren't validated.
+    - Disabled if [dataState] is not in [synced] state
+- Cancel Button
+    - Will [clone] data from listener, upon invocation
+    - Will set to [idle] state
+    - Will reset form [v-model].
+    - Revert the data back to the first time by creating a clone and deserializing reactivity
+- Delete Button
+    - Will set to [idle] state
+    - will invoke [.delete] to remove data from DB
+- Edit Button
+    - Will set [contactData] from [contacts]
+    - Will set [appState] to [editing]
 
 ### Functions
 > The code written under index.ts are designed to validate
@@ -137,7 +145,6 @@ Flow:
 - Few code are well commented following TSDoc(in proposal)/JSDoc standard. 
 - Typescript namespace declaration /src/types
 - Written with composables approach
-
 
 ### Language/Framework feature used
 ##### Vue 3:
