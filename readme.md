@@ -168,6 +168,7 @@ Flow:
     - done: making it imported as async component
     - done: wrap VNode const into arrow function.
 - [ ] Lists null handling, when creating new contact when server/emulator not responding.
+- [ ] waitForPending seems to make form completion inconsistent, fix it soon.
 
 ### TODO
 Note with TODO prefix automatically detected inside source code by the IDE.
