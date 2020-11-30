@@ -14,7 +14,6 @@ export class ContactDataService {
     private dataServices: FireStoreDataServices;
     private readonly tableName: string;
     private _waitForPending: boolean;
-    // observedRecord; []
 
     constructor(tableName: string){
         this.dataServices = new FireStoreDataServices();
