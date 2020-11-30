@@ -19,7 +19,7 @@ export class ContactDataService {
     constructor(tableName: string){
         this.dataServices = new FireStoreDataServices();
         this.tableName = tableName
-        this._waitForPending = true;
+        this._waitForPending = false;
     }
 
     DocToContactRecordMap(doc: any): any {
