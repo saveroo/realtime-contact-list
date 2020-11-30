@@ -1,22 +1,41 @@
 # Vue 3 + Firestore + Cloud Function + Typescript
-An example of Vue 3 (Composition API), Typescript, Google Cloud Function and Firestore
+An example of Vue 3 (Composition API), Typescript, Google Cloud Function, Firestore, Tailwind CSS
 
-### User Story Overview
-.....
+Demo: [REDACTED] 
 
-### Objectives ( What's covered )
+### Overview
+A Contact Collection Apps with one specific purpose to "Save Contacts" with abilities to 
+`save`, `cancel`, `edit`, `delete`, `realtime autosave` and `scroll through the document`. 
+although the requirement does not specify about listing the data, and since I missed the 24 hours deadline to put in time, 
+scaling up the requirement to represent an approach as well as tackling specific use case can be considered as a very valuable 
+yet exciting task in order to grow and learn with another stack despite the constraint, 
+would love to hear any kind of suggestion, critics, and question, it will be greatly appreciated. Thanks.
+
+### Objectives ( What's really covered )
 - [x] Client Autosave Debounce
 - [x] Serverless form completion rate calculation
 - [x] Serverless error label validation
 - [x] onWrite/onUpdate
 - [x] No HTTP.
 - [x] 5 Fields
+- [x] Docs, Approach, Flow. 
 
-### What's not covered
-..... 
-
+### What's `not really` covered
+- Build to scale
+- Build to be completely reusable
+- Performance wise
+- Real-world Validation
+- Plenty of design pattern implementation examples.
+- Cost wise.
+- Best Practice.
+- Clean Architecture.
     
+### Index
+1. Not yet
+
 #### Directory/Files structure and explanation
+This will explain a bit about the structures.
+
 - /front/
     - .env (used to store private information)
     - .env-example (used to store private information)
@@ -47,13 +66,30 @@ An example of Vue 3 (Composition API), Typescript, Google Cloud Function and Fir
     - ./src
         - **index.ts** (.onWrite background function to handle both adding and updating.)
 
+#### Data Schema Explanation
+This will explain a bit about the data schema used for this specific apps.
+
+- **selectedContactId**: (For currently selected contact)
+- **contacts**: (Lists of `contactData` in array, should be refactored with property accessor)
+- **contactData**: (Contact data fields)
+    - **_key**: (a unique clone of firebase random docId, prefixed with _ to denote responsibily/importance)
+    - **name**: (Name of contact)
+    - **address**: (address is string)
+    - **email**: (contact email)
+    - **note**: (contact note)
+    - **job**: (contact Job)
+    - **meta**: (metadata of schema, server transformed payload)
+        - **completion**: (Contact Data Field form completion rate in number)
+        - **dateAdded**:  (Functions responsibility)
+        - **dateRequest**: ()
+        - **errorMessage**: (server payload)
+            - **key**: Props key of `contactData` field
+               - **validity**: validation validity.
+                - **message**: error message.
+
 #### Front
 Form consist of `5 Field` and `2 Button`, and `1 button` to create.
 `2` more button to `Edit` and `Delete`.
-
-Features:
-- Debounced Autosave
-- Edit Delete From Firestore. 
 
 Form Field: 
 - Name
@@ -90,13 +126,6 @@ Flow:
 - Edit Button
     - Will set [contactData] from [contacts]
     - Will set [appState] to [editing]
-
-### Functions
-> The code written under index.ts are designed to validate
-> and calculate form completions, this will be observed by the client
-- ./functions
-    - src
-        - index.ts
         
 ##### Application Flow:
 1. **[Client]** On Vue instance creation, client will listen with Firebase SDK onSnapshot
@@ -112,7 +141,7 @@ Flow:
 1. **[Client]** under added scope **[Client]** will push the data to local state
 1. **[Client]** under modified scope **[Client]** will push reactive data into reaction
 1. **[Client]** Forms then will reading from contacts collection while simultaneously updating.
-1. **[Client]** will display Contact Data in ContactList.vue with 2 button Edit Delete 
+1. **[Client]** will display Contact Data in ContactList.vue with buttons Edit Delete 
 
 ##### Client:
 
@@ -136,7 +165,7 @@ Flow:
 ##### Server:
 - **[Functions]** has several function
 - **[Functions]** act as a initial document creation.
-- **[Functions]** act as an field completion rate calculation.
+- **[Functions]** act as a field completion rate calculation.
 - **[Functions]** act as an error factory
 - **[Functions]** act to transform data and giving the required fields
 - **[Functions]** guarded by few conditional and rate limiting per second.
@@ -159,7 +188,7 @@ Flow:
 - Interfaces (To create data schema standard)
 - Types (To handle param input strictly)
 - Generic
-- Property Accessor (To handle )
+- Property Accessor (To ease querying a consistent error object.)
 - Type Casting (To avoid use of `any`)
 - Simplified Factory (To create error, validation)
 
@@ -168,6 +197,14 @@ Flow:
 - Data transforming
 - Use of .onUpdate but rewritten with .onWrite to handle broader cases.
 - Rules aren't applied yet.
+
+
+##### DB Save
+
+[logo]: docs/firestore-metrics.PNG "Firestore Metrics"
+[logo]: docs/function-logs.PNG "Google Cloud Functions Invocation"
+
+---
 
 ### Known Bugs
 - [x] JSX Component won't read reactivity from the server. Error Message cases.
