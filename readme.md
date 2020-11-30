@@ -2,8 +2,7 @@
 An example of Vue 3 (Composition API), Typescript, Google Cloud Function and Firestore
 
 ### User Story Overview
-User will be presented with [Create New Contact] button and when User click the button
-, it will provide a [Form] for thy to input 
+.....
 
 ### Objectives ( What's covered )
 - [x] Client Autosave Debounce
