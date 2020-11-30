@@ -199,10 +199,11 @@ Flow:
 - Rules aren't applied yet.
 
 
-##### DB Save
+##### DB Save confirmation
 
-![firestore](./docs/firestore-metrics.PNG)|Firestore Metrics
-![function](./docs/function-logs.PNG)|Functions Logs
+![firestore](./docs/firestore-metrics.PNG?v01-12-2020)
+
+![function](./docs/function-logs.PNG?v01-12-2020)
 
 ---
 
