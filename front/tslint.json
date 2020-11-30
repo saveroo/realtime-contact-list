@@ -1,0 +1,7 @@
+{
+  "rules": {
+    "interface-name" : [true, "never-prefix"],
+    "interface-name-prefix" : [true, "never-prefix"],
+    "@typescript/interface-name-prefix" : "off"
+  }
+}

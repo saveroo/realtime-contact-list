@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.v-label-light {
+    @apply text-lg font-semibold rounded-lg text-gray-600;
+}
+
+.v-input-border {
+    @apply w-full hover:border-blue-800 border border-gray-200 rounded py-2 px-2 shadow focus:outline-none transform focus:translate-x-1;
+}
+
+.v-input-error {
+    @apply w-full border-red-600 border rounded py-2 px-2 shadow focus:outline-none transform focus:translate-x-1;
+}
