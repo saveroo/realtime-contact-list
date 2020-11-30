@@ -206,8 +206,8 @@ Flow:
 
 ---
 
-### Known Bugs
-- [x] JSX Component won't read reactivity from the server. Error Message cases.
+### Known Bugs / Fixed Bugs
+- [x] Render Functions components won't read reactivity from the server. Error Message cases.
     - done: making it imported as async component
     - done: wrap VNode const into arrow function.
 - [ ] Lists null handling, when creating new contact when server/emulator not responding.
