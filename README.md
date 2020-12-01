@@ -6,7 +6,7 @@ An example of Vue 3 (Composition API), Typescript, Google Cloud Function, Firest
 Demo: [REDACTED] 
 
 ![create](./docs/create-new-contact.jpg?v01-12-2020)
-![forms](./docs/edit-form.PNG?v01-12-2020)
+![forms](./docs/edit-form.png?v01-12-2020)
 
 ### Overview
 A Contact Collection Apps with one specific purpose to "Save Contacts" with abilities to 
