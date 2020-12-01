@@ -1,22 +1,28 @@
-dist: trusty
+dist: xenial
 
 language: node_js
 node_js:
   - 12
+  - v14.2.0
 cache:
   directories:
     - ./functions/node_modules
+    - ./front/node_modules
 script:
   - yarn global add codecov
+  - npm install -g @vue/cli
   - cd functions
+  - rm package-lock.json
   - npm install
-  - npm run report-coverage
   - npm run build
-  - cd ../front
+  - cd ../
+  - echo "Now going on to build Vue 3."
+  - cd front
+  - rm package-lock.json
   - npm install
-  - npm run report-coverage
-  - npm test:unit
   - npm run build
+  - cd ../
+  - cd functions
 deploy:
   provider: firebase
   token:
