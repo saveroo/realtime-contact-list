@@ -6,6 +6,7 @@
     "serve": "npm run build && firebase emulators:start",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
+    "report-coverage": "nyc report --reporter=json > coverage/coverage.json",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log"
   },

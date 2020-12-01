@@ -1,20 +1,27 @@
-language: node
+dist: trusty
+
+language: node_js
 node_js:
   - 12
-  - "14.2.0"
 cache:
   directories:
-    - node_modules
+    - ./functions/node_modules
 script:
-  - cd functions
-  - yarn install
-  - yarn lint
-  - yarn deploy --only functions
-  - cd ../
   - yarn global add codecov
+  - cd functions
+  - npm install
+  - npm run report-coverage
+  - npm run build
+  - cd ../front
+  - npm install
+  - npm run report-coverage
+  - npm test:unit
+  - npm run build
 deploy:
   provider: firebase
   token:
     secure: $FIREBASE_FUNCTIONS_TOKEN$
 after_success:
+  - yarn global add firebase-tools
+  - firebase deploy --token "$FIREBASE_FUNCTIONS_TOKEN"
   - codecov

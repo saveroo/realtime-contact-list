@@ -6,6 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
+    "report-coverage": "nyc report --reporter=json > coverage/coverage.json",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
