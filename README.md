@@ -1,9 +1,12 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/saveroo/emerhub-test/badge)](https://www.codefactor.io/repository/github/saveroo/emerhub-test)
 ---
-# Vue 3 + Firestore + Cloud Function + Typescript
+# Vue 3 + Firestore + Cloud Function + Typescript + Tailwind CSS
 An example of Vue 3 (Composition API), Typescript, Google Cloud Function, Firestore, Tailwind CSS
 
 Demo: [REDACTED] 
+
+![create](./docs/create-new-contact.jpg?v01-12-2020)
+![forms](./docs/edit-form.PNG?v01-12-2020)
 
 ### Overview
 A Contact Collection Apps with one specific purpose to "Save Contacts" with abilities to 
