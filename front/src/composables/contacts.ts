@@ -1,6 +1,6 @@
-import type {Ref} from "@vue/reactivity"
-import {reactive, ref, toRefs, markRaw, toRaw, toRef} from "@vue/reactivity"
 import {FireStoreDataServices} from "@/services/DataServices";
+import type {Ref} from "@vue/reactivity"
+import {markRaw, reactive, ref, toRaw, toRefs} from "@vue/reactivity"
 import {debounce, once} from 'lodash'
 
 export class ContactDataService {
@@ -442,23 +442,23 @@ export function useContacts() {
 
     return {
         ...toRefs(cState),
-        load,
+        appState,
+        appStateMethod,
+        cancelEditing,
+        contactDataErrors,
+        contactDataMeta,
         createBlankContactDocument,
         createContact,
-        cancelEditing,
-        editContact,
+        dataState,
+        dataStateMethod,
         deleteContact,
-        syncContactField,
-        saveContact,
+        editContact,
+        error,
         formCompletion,
         formErrorMessage,
         ifCompletion,
-        contactDataErrors,
-        contactDataMeta,
-        error,
-        appState,
-        appStateMethod,
-        dataState,
-        dataStateMethod
+        load,
+        saveContact,
+        syncContactField,
     }
 }
