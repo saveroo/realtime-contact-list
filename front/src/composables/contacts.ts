@@ -224,7 +224,7 @@ export function useContacts() {
         appStateMethod.toIdle();
         dataStateMethod.toIdle();
         return;
-    }, 10500);
+    }, 2000);
 
     /**
      * To exit a function

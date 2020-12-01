@@ -4,9 +4,7 @@ const admin = require('firebase-admin');
 // TODO: Make a shared lib with client.
 
 admin.initializeApp({
-    // credential: admin.credential.cert(serviceAccount),
     credential: admin.credential.applicationDefault(),
-    // databaseURL: 'https://emerhub-test-1.firebaseio.com',
 });
 
 interface IStringValidator {
@@ -47,13 +45,6 @@ class ErrorFactory implements IErrorFactory {
         };
     }
 }
-//     (key: string, validity: boolean, message: string) => {
-//     return {
-//         key,
-//         validity,
-//         message,
-//     }
-// }
 
 // ============================ Contact Update Trigger
 export const onDataUpdate = functions
@@ -67,7 +58,6 @@ export const onDataUpdate = functions
         let couldBeUpdated = false;
         let percent: number = 0;
         const waitSecond = 1;
-
 
         // If Removed.
         if(before && !after) return null;
@@ -114,7 +104,6 @@ export const onDataUpdate = functions
         const trueMap = Object.values(errors).filter((f: ErrorFactoryDefinition) => f.validity).length
         percent = Math.round((trueMap / Object.keys(errors).length) * 100);
 
-        console.log(errors, "Errors")
         if(after._key && couldBeUpdated) {
             // TODO: Object assign wont merge with payload as well, refactor this as well, since .meta might be null
             after.meta.completion = percent;
