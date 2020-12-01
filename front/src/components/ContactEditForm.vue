@@ -186,7 +186,7 @@ export default {
     const deb = debounce(() => {
       time.value += 1;
       syncContactField();
-    }, 800);
+    }, 1500);
 
     return {
       props,
