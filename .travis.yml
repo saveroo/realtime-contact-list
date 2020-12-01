@@ -1,0 +1,20 @@
+language: node
+node_js:
+  - 12
+  - "14.2.0"
+cache:
+  directories:
+    - node_modules
+script:
+  - cd functions
+  - yarn install
+  - yarn lint
+  - yarn deploy --only functions
+  - cd ../
+  - yarn global add codecov
+deploy:
+  provider: firebase
+  token:
+    secure: $FIREBASE_FUNCTIONS_TOKEN$
+after_success:
+  - codecov
