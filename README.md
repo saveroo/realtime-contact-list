@@ -1,4 +1,4 @@
-[![CodeFactor](https://www.codefactor.io/repository/github/saveroo/emerhub-test/badge)](https://www.codefactor.io/repository/github/saveroo/emerhub-test)
+[![CodeFactor](https://www.codefactor.io/repository/github/saveroo/realtime-contact-list/badge)](https://www.codefactor.io/repository/github/saveroo/realtime-contact-list)
 ---
 # Vue 3 + Firestore + Cloud Function + Typescript + Tailwind CSS
 An example of Vue 3 (Composition API), Typescript, Google Cloud Function, Firestore, Tailwind CSS
