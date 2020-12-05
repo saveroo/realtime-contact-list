@@ -4,9 +4,9 @@
       <h2
         :class="`${appTitleAnimateClass()} relative p-3 text-4xl text-gray-600 transform font-bold tracking-wider`"
       >
-        <div class="relative">
+        <span class="relative">
           Contact List
-        </div>
+        </span>
       </h2>
       <contact-new-button v-if="appStateMethod.isIdle()"></contact-new-button>
       <div v-if="error">:( {{ error }}</div>
@@ -57,7 +57,7 @@ export default defineComponent({
     } = useContacts();
 
     // Capture Error.
-    onErrorCaptured(e => {
+    onErrorCaptured((e: any) => {
       error.value = e;
     });
 

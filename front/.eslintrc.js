@@ -16,10 +16,14 @@ module.exports = {
   rules: {
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
-    "@typescript/interface-name-prefix" : "off",
-    "@typescript/interface-name" : "off",
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "interface",
+        "format": ["PascalCase"],
+      }
+    ],
     "@typescript-eslint/no-inferrable-types": "off",
-    "interface-name-prefix" : "off",
     'vue/no-unused-components': 'off'
   },
   overrides: [
