@@ -15,7 +15,7 @@ const firebaseConfig = firebase.initializeApp({
 const fb = firebase;
 // fb.firestore.setLogLevel('debug')
 
-firebaseConfig.firestore().settings({experimentalForceLongPolling: true })
+// firebaseConfig.firestore().settings({experimentalForceLongPolling: true })
 
 // Fix for offline
 // Initialize Firebase
