@@ -110,7 +110,7 @@ export const onDataUpdate = functions
             after.meta.errorMessage = errors;
             after.meta.dateLastUpdated = new Date();
             return change.after.ref.update(after)
-        } else {
-            return null;
         }
+
+        return null;
     })
