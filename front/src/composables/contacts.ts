@@ -1,7 +1,7 @@
 import {FireStoreDataServices} from "@/services/DataServices";
-import type {Ref} from "@vue/reactivity"
-import {markRaw, reactive, ref, toRaw, toRefs} from "@vue/reactivity"
-import {debounce, once} from 'lodash'
+import type { Ref } from "vue"
+import {markRaw, reactive, ref, toRaw, toRefs} from "vue"
+import { debounce, once } from 'lodash'
 
 export class ContactDataService {
     get waitForPending(): boolean {
@@ -18,7 +18,7 @@ export class ContactDataService {
     constructor(tableName: string){
         this.dataServices = new FireStoreDataServices();
         this.tableName = tableName
-        this._waitForPending = false;
+        this._waitForPending = true;
     }
 
     DocToContactRecordMap(doc: any): any {
@@ -245,15 +245,18 @@ export function useContacts() {
         cState.contactData.meta.dateRequest = new Date();
         dataStateMethod.toModified()
         if (appStateMethod.isEditing()) {
-            try {
-                await contactDataService.Update(
-                    cState.selectedContactId as string,
-                    cState.contactData
-                )
-                dataStateMethod.toSync()
-            } catch (error) {
-                dataStateMethod.toError()
-            }
+            debounce(async() => {
+                console.log("debounce")
+                try {
+                    await contactDataService.Update(
+                        cState.selectedContactId as string,
+                        cState.contactData
+                    )
+                    dataStateMethod.toSync()
+                } catch (error) {
+                    dataStateMethod.toError()
+                }
+            }, 1500)()
         }
         return;
     }
@@ -357,30 +360,6 @@ export function useContacts() {
             cState.contactData = {...toRaw(contactDataLocalCopy)};
             resetToIdle()
         }
-
-
-
-        // if(appStateMethod.isCreating()) {
-        //     cState.contactData = reactive(objectSerialization(contactDataLocalCopy));
-        //
-        //     if(cState.selectedContactId)
-        //         await contactDataService.Update(cState.selectedContactId as string, cState.contactData);
-        //
-        //     appStateMethod.toIdle()
-        //     dataStateMethod.toIdle()
-        //     resetFormState();
-        // }
-        //
-        // if(appStateMethod.isEditing()) {
-        //     cState.contactData = reactive(objectSerialization(contactDataLocalCopy));
-        //
-        //     if(cState.selectedContactId)
-        //         await contactDataService.Update(cState.selectedContactId as string, cState.contactData);
-        //
-        //     dataStateMethod.toIdle()
-        //     appStateMethod.toIdle()
-        //     resetFormState();
-        // }
     }
 
     // Form completion escaping undefined TS.
