@@ -3,6 +3,18 @@ import { useContacts } from "@/composables/contacts";
 import { computed, h, defineComponent, onMounted, onUpdated, ref } from "vue";
 // TODO: Make a function to generate node from array of input objects for simple component.
 // ?Perhaps could be improved and detached into separate libs
+
+// eslint-disable-next-line @typescript-eslint/interface-name-prefix
+interface ICustomField {
+  type: string;
+  modelValue: string;
+  label: string;
+  id: string;
+  placeholder: string;
+  error: object;
+  options: Array<string>;
+}
+
 export default defineComponent({
   name: "InputField",
   functional: true,
@@ -38,25 +50,6 @@ export default defineComponent({
   // ["type", "modelValue", "label", "id", "placeholder", "options"],
   setup(props: any, { emit }: { emit: any }) {
     const { formErrorMessage, contactData } = useContacts();
-    // watch
-    // const s = ref<any>(false);
-    // console.log(isReactive(s), "errValidy");
-    //
-    // s.value = () => {
-    //   return contactData.value.meta.errorMessage?.name.validity;
-    // };
-    // const ss = ref<any>(false);
-    // ss.value = () => {
-    //   return contactData.value.meta.errorMessage?.name.validity;
-    // };
-    //
-    // const err = reactive(formErrorMessage(props.id));
-    // const errValidity = s.value;
-    // const errMessage = ss.value;
-
-    // console.log(isReactive(contactData), "errValidy");
-    // console.log(isReactive(s), "errMessage");
-
     // hacks...
     const errValidity = ref(props.error?.validity.value);
     const errMessage = ref(props.error?.message.value);
@@ -81,12 +74,12 @@ export default defineComponent({
     const inputClass = () =>
       !eValidity.value ? "v-input-error" : "v-input-border";
     // console.log(props.error.validity, props.error.name, "PROPS");
-    const DivWrapper = (props: any, ...children: any) =>
+    const DivWrapper = (props: ICustomField, ...children: any) =>
       h("div", { class: "p-2 w-full" }, [
         h("label", { for: props.id, class: "v-label-light" }, [props.label]),
         [...children, Error()]
       ]);
-    const Select = (props: any) =>
+    const Select = (props: ICustomField) =>
       DivWrapper(
         props,
         h("span"),
@@ -103,7 +96,7 @@ export default defineComponent({
           props.options.map((k: string) => h("option", k))
         )
       );
-    const Input = (props: any) =>
+    const Input = (props: ICustomField) =>
       DivWrapper(
         props,
         h("input", {
@@ -116,7 +109,7 @@ export default defineComponent({
           placeholder: props.placeholder
         })
       );
-    const TextArea = (props: any) =>
+    const TextArea = (props: ICustomField) =>
       DivWrapper(
         props,
         h(
@@ -141,7 +134,9 @@ export default defineComponent({
         ? Input(props)
         : props.type === "select"
         ? Select(props)
-        : "WTF";
+        : props.type === undefined
+        ? "No Type"
+        : "Undefined";
   }
 });
 </script>
