@@ -13,7 +13,7 @@
           <div>
             <form
               @submit.prevent="saveContact()"
-              @input="deb()"
+              @input="deb"
               class="items-center group-hover:bg-gray-600"
             >
               <CustomFields
@@ -155,15 +155,15 @@ export default {
       btnSave: {
         description: `Button is outlined, will show form completion, change its bg-color whenever reached completion, shadow on hover`,
         root: () =>
-          "relative hover:shadow-md hover:bg-green-50 ml-2 mr-2 border text-white tracking-widest border-green-400 p-2 rounded-lg",
+          `relative hover:shadow-md hover:bg-green-50 ml-2 mr-2 border text-white tracking-widest ${dataStateMethod.isModified() ? "border-gray-400" : "border-green-400"} p-2 rounded-lg`,
         divProgressBarStyle: () =>
           `width:${formCompletion() ?? 0}%; transition: width 1s;`,
         divProgressBarClass: () =>
           `absolute left-0 top-0 rounded-lg w-full h-full ${ifCompletion(
             "===",
             100,
-            "bg-green-500",
-            "bg-green-300"
+            dataStateMethod.isModified() ? "bg-gray-400" : "bg-green-500",
+            dataStateMethod.isModified() ? "bg-gray-400" : "bg-green-300"
           )} transition`,
         spanAnimateOnFull: () => `relative
         ${ifCompletion("<", 70, "text-black", "text-white")}
@@ -176,8 +176,8 @@ export default {
           `hover:bg-green-50 mr-2 ml-2 border p-2 tracking-widest rounded-lg  ${ifCompletion(
             "===",
             100,
-            "border-gray-500 ",
-            "border-green-400"
+            "border-gray-500",
+            "border-gray-400"
           )}`
       }
     };
